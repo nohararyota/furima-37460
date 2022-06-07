@@ -9,56 +9,58 @@
 | last_name          | string                | null: false               |
 | first_name_katakana| string                | null: false               |
 | last_name_katakana | string                | null: false               |
-| date_of_birth      | datetime              | null: false               |
+| date_of_birth      | date                  | null: false               |
 
 
 
 ### Association
-* has_many :items
-* has_many :purchase_records
+* has_many :item
+* has_many :purchase_record
 
 ## items
 
 |Column              |Type        |Options                         |
 |--------------------|------------|--------------------------------|
-| text               | text       | null: false                    |
-| category_id        | string     | null: false                    |
-| situation_id       | string     | null: false                    |
+| product_name       | string     | null: false                    |
+| description_of_item| text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| situation_id       | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
-| area_id            | string     | null: false                    |
-| price              | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| days to ship_id    | integer    | null: false                    |
+| price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :users
-has_one :purchase_records
+belongs_to :user
+has_one :purchase_record
 
 ## purchase records
 
 |Column               |Type        |Options                         |
 |---------------------|------------|--------------------------------|
-| sipping_information | references | null: false, foreign_key: true |
 | user                | references | null: false, foreign_key: true |
-| items               | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
 
 
 ### Association
-belongs_to :users
-belongs_to :items
+belongs_to :user
+belongs_to :item
 has_one :sipping_information
 
 ## sipping information
 
-|Column          |Type       |Options      |
-|----------------|-----------|-------------|
-| post_cord      | integer   | null: false |
-| prefectures_id | integer   | null: false |
-| municipalities | string    | null: false |
-| address        | string    | null: false |
-| building       | string    |             |
-| phone_number   | datetime  | null: false |
+|Column           |Type        |Options                         |
+|-----------------|------------|--------------------------------|
+| post_cord       | string     | null: false                    |
+| area_id         | integer    | null: false                    |
+| municipalities  | string     | null: false                    |
+| address         | string     | null: false                    |
+| building        | string     |                                |
+| phone_number    | datetime   | null: false                    |
+| purchase record | references | null: false, foreign_key: true |
 
 
 ### Association
 
-belongs_to :purchase_records
+belongs_to :purchase_record
