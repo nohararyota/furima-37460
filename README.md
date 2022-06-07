@@ -14,8 +14,8 @@
 
 
 ### Association
-* has_many :item
-* has_many :purchase_record
+* has_many :items
+* has_many :purchase_records
 
 ## items
 
@@ -27,7 +27,7 @@
 | situation_id       | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| days to ship_id    | integer    | null: false                    |
+| days_to_ship_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
@@ -53,11 +53,11 @@ has_one :sipping_information
 |Column           |Type        |Options                         |
 |-----------------|------------|--------------------------------|
 | post_cord       | string     | null: false                    |
-| area_id         | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | municipalities  | string     | null: false                    |
 | address         | string     | null: false                    |
 | building        | string     |                                |
-| phone_number    | datetime   | null: false                    |
+| phone_number    | string     | null: false                    |
 | purchase record | references | null: false, foreign_key: true |
 
 
