@@ -35,7 +35,7 @@
 belongs_to :user
 has_one :purchase_record
 
-## purchase records
+## purchase_records
 
 |Column               |Type        |Options                         |
 |---------------------|------------|--------------------------------|
@@ -48,7 +48,7 @@ belongs_to :user
 belongs_to :item
 has_one :sipping_information
 
-## sipping information
+## sipping_information
 
 |Column           |Type        |Options                         |
 |-----------------|------------|--------------------------------|
@@ -57,10 +57,10 @@ has_one :sipping_information
 | municipalities  | string     | null: false                    |
 | address         | string     | null: false                    |
 | building        | string     |                                |
-| phone_number    | integer    | null: false                    |
-| purchase record | references | null: false, foreign_key: true |
+| phone_number    | string     | null: false                    |
+| purchase_record | references | null: false, foreign_key: true |
 
 
 ### Association
 
-belongs_to :purchase_records
+belongs_to :purchase_record
