@@ -48,7 +48,7 @@ belongs_to :user
 belongs_to :item
 has_one :sipping_information
 
-## sipping_information
+## sipping_informations
 
 |Column           |Type        |Options                         |
 |-----------------|------------|--------------------------------|
