@@ -24,10 +24,42 @@ require 'rails_helper'
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
+      it "重複したemailがある場合は登録できない"do
+        @user.save
+        another_user =FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
+      end
+      it "emailに＠がないと登録できない"do
+        @user.email = 'aaaa.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
       it "パスワードがない場合登録できない"do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
+      end
+      it "パスワードが6文字未満の場合登録できない"do
+        @user.password = 'a1111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)")
+      end
+      it "パスワードが英文字のみの場合登録できない"do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "パスワードが数字のみの場合登録できない"do
+        @user.password = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "パスワードが全角文字を含む場合登録できない"do
+        @user.password = 'あああああ１'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it "パスワードがあってもパスワード確認がない場合登録できない"do
         @user.password_confirmation = ''
