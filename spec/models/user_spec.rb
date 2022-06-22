@@ -10,7 +10,7 @@ require 'rails_helper'
 
       context "登録できる場合"
       it "正しい入力で登録ができること" do
-        @user.valid?
+        expect(@user).to be_valid
       end
 
       context "登録できない場合"
