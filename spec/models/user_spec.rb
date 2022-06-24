@@ -8,12 +8,13 @@ require 'rails_helper'
       end
   
 
-      context "登録できる場合"
+      context "登録できる場合"do
       it "正しい入力で登録ができること" do
         expect(@user).to be_valid
       end
+      end
 
-      context "登録できない場合"
+      context "登録できない場合"do
       it "ニックネームが空であると登録できない" do
         @user.nick_name = ''
         @user.valid?
@@ -46,7 +47,12 @@ require 'rails_helper'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)")
       end
-      it "パスワードが英文字のみの場合登録できない"do
+      it "パスワードが英数字混合の場合でないと登録できない"do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "パスワードが英文字のみ場合登録できない"do
         @user.password = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
@@ -110,6 +116,7 @@ require 'rails_helper'
         @user.date_of_bath = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Date of bath can't be blank")
+      end
       end
     end
   end
