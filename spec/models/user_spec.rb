@@ -45,27 +45,27 @@ require 'rails_helper'
       it "パスワードが6文字未満の場合登録できない"do
         @user.password = 'a1111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include( "Password is too short (minimum is 6 characters)")
       end
       it "パスワードが英数字混合の場合でないと登録できない"do
         @user.password = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password には半角英字と数字の両方を含めて設定してください")
       end
-      it "パスワードが英文字のみ場合登録できない"do
+      it "パスワードが英文字のみの場合登録できない"do
         @user.password = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password には半角英字と数字の両方を含めて設定してください")
       end
       it "パスワードが数字のみの場合登録できない"do
         @user.password = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password には半角英字と数字の両方を含めて設定してください")
       end
       it "パスワードが全角文字を含む場合登録できない"do
         @user.password = 'あああああ１'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password には半角英字と数字の両方を含めて設定してください")
       end
       it "パスワードがあってもパスワード確認がない場合登録できない"do
         @user.password_confirmation = ''
