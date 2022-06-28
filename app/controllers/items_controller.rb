@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to root_path
     else
-      redirect_to root_path
+      redirect_to edit_item_path
     end
   end
 
