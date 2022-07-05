@@ -63,6 +63,26 @@ RSpec.describe ShippingInfomationPurchaseRecord, type: :model do
         @shipping_infomation_purchase_record.valid?
         expect(@shipping_infomation_purchase_record.errors.full_messages).to include('Phone number is invalid')
       end
+      it '電話番号が9桁以下で保存できないこと' do
+        @shipping_infomation_purchase_record.phone_number = '123456789'
+        @shipping_infomation_purchase_record.valid?
+        expect(@shipping_infomation_purchase_record.errors.full_messages).to include('Phone number is invalid')
+      end
+      it '電話番号が12桁以上で保存できないこと' do
+        @shipping_infomation_purchase_record.phone_number = '123456789012'
+        @shipping_infomation_purchase_record.valid?
+        expect(@shipping_infomation_purchase_record.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'item_idが紐づいていないと保存できないこと' do
+        @shipping_infomation_purchase_record.item_id = nil
+        @shipping_infomation_purchase_record.valid?
+        expect(@shipping_infomation_purchase_record.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'user_idが紐づいていないと保存できないこと' do
+        @shipping_infomation_purchase_record.user_id = nil
+        @shipping_infomation_purchase_record.valid?
+        expect(@shipping_infomation_purchase_record.errors.full_messages).to include("User can't be blank")
+      end
     end
   end
 end

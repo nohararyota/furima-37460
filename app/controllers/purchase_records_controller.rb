@@ -1,7 +1,7 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-  before_action :sould_out, only: [:index, :create]
+  before_action :sold_out, only: [:index, :create]
   def index
     @shipping_infomation_purchase_record = ShippingInfomationPurchaseRecord.new
   end
@@ -38,7 +38,7 @@ class PurchaseRecordsController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def sould_out
+  def sold_out
     redirect_to root_path if @item.user_id == current_user.id || !@item.purchase_record.nil?
   end
 end

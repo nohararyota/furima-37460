@@ -12,6 +12,8 @@ class ShippingInfomationPurchaseRecord
   validates :address,            presence: true
   validates :phone_number, presence: true, format: { with: VALID_PHONE_NUMBER_REGEX }
   validates :token, presence: true
+  validates :user_id, presence: true
+  validates :item_id, presence: true
 
   def save
     purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
