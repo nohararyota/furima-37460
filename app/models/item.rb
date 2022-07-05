@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :situation
   belongs_to :user
   has_one_attached :image
+  has_one :purchase_record
 
   validates :product_name,          presence: true
   validates :description_of_item,   presence: true

@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :user do
     nick_name { 'aaaa' }
-    email                 { 'test@example' }
+    email                 { Faker::Internet.email }
+    # emailのみfakerでランダムなデータを生成できるようにご修正
     password              { 'a00000' }
     password_confirmation { password }
     last_name             { '田中' }

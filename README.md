@@ -52,7 +52,7 @@ has_one :sipping_information
 
 |Column           |Type        |Options                         |
 |-----------------|------------|--------------------------------|
-| post_cord       | string     | null: false                    |
+| postal_cord     | string     | null: false                    |
 | prefecture_id   | integer    | null: false                    |
 | municipalities  | string     | null: false                    |
 | address         | string     | null: false                    |
