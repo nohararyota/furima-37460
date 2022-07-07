@@ -66,3 +66,4 @@ gem 'active_hash'
 gem 'payjp'
 gem 'pry-rails'
 gem 'faker'
+gem "aws-sdk-s3", require: false
